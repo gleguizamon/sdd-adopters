@@ -6,15 +6,28 @@ import { ArrowRight, Sparkles, Wand2, Star, Trophy, Target, Users2, Zap } from "
 import { useState } from "react"
 
 const fadeIn = {
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 24 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
+  transition: {
+    duration: 0.6,
+    ease: [0.25, 0.4, 0.25, 1]
+  }
+}
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 32, scale: 0.98 },
+  animate: { opacity: 1, y: 0, scale: 1 },
+  transition: {
+    duration: 0.7,
+    ease: [0.22, 0.68, 0.22, 1]
+  }
 }
 
 const stagger = {
   animate: {
     transition: {
-      staggerChildren: 0.1
+      staggerChildren: 0.12,
+      delayChildren: 0.1
     }
   }
 }
@@ -29,15 +42,15 @@ export default function Home() {
   return (
     <>
       {/* Floating Navbar */}
-      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-foreground/5 backdrop-blur-xl rounded-full px-6 py-3 border border-foreground/10">
+      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-background/80 backdrop-blur-xl rounded-full px-6 py-3 border border-foreground/10 shadow-lg">
         <div className="flex items-center gap-6">
-          <button onClick={() => scrollToSection('hero')} className="text-sm font-medium hover:text-foreground/80 transition">
+          <button onClick={() => scrollToSection('hero')} className="text-sm font-medium hover:text-primary transition-colors duration-200">
             Home
           </button>
-          <button onClick={() => scrollToSection('how-it-works')} className="text-sm text-foreground/60 hover:text-foreground transition">
+          <button onClick={() => scrollToSection('how-it-works')} className="text-sm text-foreground/60 hover:text-primary transition-colors duration-200">
             How it works
           </button>
-          <button onClick={() => scrollToSection('waitlist')} className="text-sm text-foreground/60 hover:text-foreground transition">
+          <button onClick={() => scrollToSection('waitlist')} className="text-sm text-foreground/60 hover:text-primary transition-colors duration-200">
             Join
           </button>
         </div>
@@ -55,7 +68,7 @@ export default function Home() {
             {/* Small logo */}
             <motion.div variants={fadeIn} className="mb-8">
               <div className="inline-flex items-center gap-2 text-lg font-semibold">
-                <Wand2 className="h-5 w-5" />
+                <Wand2 className="h-5 w-5 text-primary" />
                 <span>SDD Adopters</span>
               </div>
             </motion.div>
@@ -67,30 +80,35 @@ export default function Home() {
             >
               Turn Onboarding Into
               <br />
-              <span className="text-foreground/60">A Game Your Team Loves</span>
+              <span className="bg-gradient-to-r from-primary via-chart-3 to-chart-2 bg-clip-text text-transparent">A Game Your Team Loves</span>
             </motion.h1>
 
             {/* Sub-headline */}
             <motion.p
               variants={fadeIn}
-              className="text-xl md:text-2xl text-foreground/60 leading-relaxed mb-8"
+              className="text-xl md:text-2xl text-foreground/70 leading-relaxed mb-8"
             >
-              AI that empowers developers, not replaces them.
+              AI that <span className="text-primary font-semibold">empowers</span> developers, not replaces them.
               <br />
-              <span className="text-foreground/80">Watch productivity soar through gamification.</span>
+              <span className="text-foreground/90">Watch productivity soar through gamification.</span>
             </motion.p>
 
             {/* CTA with objection handling */}
             <motion.div variants={fadeIn} className="mb-8">
-              <Button
-                size="lg"
-                className="text-lg px-10 py-7 gap-3 group bg-foreground text-background hover:bg-foreground/90 shadow-lg"
-                onClick={() => scrollToSection('waitlist')}
+              <motion.div
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2, ease: [0.22, 0.68, 0.22, 1] }}
               >
-                <Sparkles className="h-5 w-5" />
-                Join Early Access
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Button>
+                <Button
+                  className="h-16 text-lg px-10 gap-3 group bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 rounded-xl transition-all duration-300"
+                  onClick={() => scrollToSection('waitlist')}
+                >
+                  <Sparkles className="h-5 w-5" />
+                  Join Early Access
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </motion.div>
               <p className="text-sm text-foreground/50 mt-4">
                 ✓ Free forever for early adopters  ✓ No credit card  ✓ Launch in Q1 2026
               </p>
@@ -124,42 +142,48 @@ export default function Home() {
                 {/* Feature 1 */}
                 <motion.div
                   variants={fadeIn}
-                  className="text-center p-8 rounded-2xl bg-foreground/5 hover:bg-foreground/[0.07] transition-colors"
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  transition={{ duration: 0.3, ease: [0.22, 0.68, 0.22, 1] }}
+                  className="text-center p-8 rounded-2xl bg-foreground/5 hover:bg-primary/10 border border-transparent hover:border-primary/20 transition-all duration-300 group cursor-pointer"
                 >
-                  <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-foreground/10 flex items-center justify-center">
-                    <Wand2 className="h-12 w-12 text-foreground/80" />
+                  <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                    <Wand2 className="h-12 w-12 text-primary" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3">Magic Quests</h3>
                   <p className="text-foreground/60 leading-relaxed">
-                    Transform boring tasks into magical quests. Your team earns XP and unlocks achievements.
+                    Transform boring tasks into <span className="text-primary">magical quests</span>. Your team earns XP and unlocks achievements.
                   </p>
                 </motion.div>
 
                 {/* Feature 2 */}
                 <motion.div
                   variants={fadeIn}
-                  className="text-center p-8 rounded-2xl bg-foreground/5 hover:bg-foreground/[0.07] transition-colors"
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  transition={{ duration: 0.3, ease: [0.22, 0.68, 0.22, 1] }}
+                  className="text-center p-8 rounded-2xl bg-foreground/5 hover:bg-chart-3/10 border border-transparent hover:border-chart-3/20 transition-all duration-300 group cursor-pointer"
                 >
-                  <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-foreground/10 flex items-center justify-center">
-                    <Star className="h-12 w-12 text-foreground/80" />
+                  <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-chart-3/10 flex items-center justify-center group-hover:bg-chart-3/20 transition-colors duration-300">
+                    <Star className="h-12 w-12 text-chart-3" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3">AI Mentor</h3>
                   <p className="text-foreground/60 leading-relaxed">
-                    Your personal AI guide helps you level up. Ask questions, get instant answers, never feel lost.
+                    Your personal <span className="text-chart-3">AI guide</span> helps you level up. Never feel lost again.
                   </p>
                 </motion.div>
 
                 {/* Feature 3 */}
                 <motion.div
                   variants={fadeIn}
-                  className="text-center p-8 rounded-2xl bg-foreground/5 hover:bg-foreground/[0.07] transition-colors"
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  transition={{ duration: 0.3, ease: [0.22, 0.68, 0.22, 1] }}
+                  className="text-center p-8 rounded-2xl bg-foreground/5 hover:bg-chart-2/10 border border-transparent hover:border-chart-2/20 transition-all duration-300 group cursor-pointer"
                 >
-                  <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-foreground/10 flex items-center justify-center">
-                    <Trophy className="h-12 w-12 text-foreground/80" />
+                  <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-chart-2/10 flex items-center justify-center group-hover:bg-chart-2/20 transition-colors duration-300">
+                    <Trophy className="h-12 w-12 text-chart-2" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3">Team Leaderboard</h3>
                   <p className="text-foreground/60 leading-relaxed">
-                    Friendly competition drives engagement. See who's crushing it and celebrate wins together.
+                    <span className="text-chart-2">Friendly competition</span> drives engagement. Celebrate wins together.
                   </p>
                 </motion.div>
               </div>
@@ -169,20 +193,20 @@ export default function Home() {
                 variants={fadeIn}
                 className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 text-center"
               >
-                <div>
-                  <div className="text-4xl font-bold mb-2">10x</div>
+                <div className="p-4 rounded-xl hover:bg-foreground/5 transition-colors duration-300">
+                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-chart-3 bg-clip-text text-transparent">10x</div>
                   <div className="text-sm text-foreground/60">Faster Onboarding</div>
                 </div>
-                <div>
-                  <div className="text-4xl font-bold mb-2">94%</div>
+                <div className="p-4 rounded-xl hover:bg-foreground/5 transition-colors duration-300">
+                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-chart-2 to-primary bg-clip-text text-transparent">94%</div>
                   <div className="text-sm text-foreground/60">Completion Rate</div>
                 </div>
-                <div>
-                  <div className="text-4xl font-bold mb-2">4.9/5</div>
+                <div className="p-4 rounded-xl hover:bg-foreground/5 transition-colors duration-300">
+                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-chart-3 to-chart-2 bg-clip-text text-transparent">4.9/5</div>
                   <div className="text-sm text-foreground/60">Team Satisfaction</div>
                 </div>
-                <div>
-                  <div className="text-4xl font-bold mb-2">50+</div>
+                <div className="p-4 rounded-xl hover:bg-foreground/5 transition-colors duration-300">
+                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-chart-2 bg-clip-text text-transparent">50+</div>
                   <div className="text-sm text-foreground/60">Early Adopters</div>
                 </div>
               </motion.div>
@@ -254,8 +278,8 @@ export default function Home() {
             className="mx-auto max-w-2xl text-center"
           >
             <motion.div variants={fadeIn} className="mb-8">
-              <div className="inline-flex items-center gap-2 rounded-full bg-foreground/10 px-4 py-2 text-sm mb-6">
-                <Zap className="h-4 w-4" />
+              <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 border border-primary/20 px-4 py-2 text-sm mb-6">
+                <Zap className="h-4 w-4 text-primary" />
                 <span>Launching Q1 2026 • Join 50+ teams on the waitlist</span>
               </div>
             </motion.div>
@@ -266,14 +290,14 @@ export default function Home() {
             >
               Be First to Experience
               <br />
-              <span className="text-foreground/60">The Future of Onboarding</span>
+              <span className="bg-gradient-to-r from-primary via-chart-3 to-chart-2 bg-clip-text text-transparent">The Future of Onboarding</span>
             </motion.h2>
 
             <motion.p
               variants={fadeIn}
-              className="text-xl text-foreground/60 mb-8"
+              className="text-xl text-foreground/70 mb-8"
             >
-              Join the waitlist and get <span className="text-foreground font-semibold">lifetime free access</span> when we launch.
+              Join the waitlist and get <span className="text-primary font-semibold">lifetime free access</span> when we launch.
             </motion.p>
 
             <motion.div variants={fadeIn}>
@@ -290,12 +314,11 @@ export default function Home() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="flex-1 px-5 py-4 rounded-xl bg-foreground/5 border border-foreground/10 text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-foreground/20 text-lg"
+                  className="flex-1 h-14 px-5 rounded-xl bg-foreground/5 border border-foreground/10 text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary text-lg"
                 />
                 <Button
                   type="submit"
-                  size="lg"
-                  className="px-8 py-4 text-lg gap-2 group bg-foreground text-background hover:bg-foreground/90"
+                  className="h-14 px-8 text-lg gap-2 group bg-foreground text-background hover:bg-foreground/90 rounded-xl"
                 >
                   Get Lifetime Free Access
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
