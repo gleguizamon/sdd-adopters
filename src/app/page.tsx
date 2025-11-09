@@ -102,8 +102,8 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-border/40">
-        <div className="mx-auto max-w-6xl px-6 py-24 sm:py-32 lg:px-8">
+      <section className="relative overflow-hidden">
+        <div className="mx-auto max-w-6xl px-6 py-20 sm:py-28 lg:px-8">
           <motion.div
             initial="initial"
             animate="animate"
@@ -111,7 +111,7 @@ export default function Home() {
             className="mx-auto max-w-3xl text-center"
           >
             <motion.div variants={fadeInUp} className="mb-6">
-              <span className="inline-flex items-center gap-2 rounded-full border border-border/40 bg-muted/30 px-4 py-1.5 text-sm">
+              <span className="inline-flex items-center gap-2 rounded-full bg-foreground/5 px-4 py-1.5 text-sm text-foreground/60">
                 <Minus className="h-3 w-3" />
                 Now in Beta
               </span>
@@ -119,14 +119,14 @@ export default function Home() {
 
             <motion.h1
               variants={fadeInUp}
-              className="text-5xl font-medium tracking-tight sm:text-7xl mb-6"
+              className="text-5xl font-semibold tracking-tight sm:text-7xl mb-6"
             >
               Bring Structure to AI Adoption
             </motion.h1>
 
             <motion.p
               variants={fadeInUp}
-              className="text-xl text-muted-foreground leading-relaxed mb-10"
+              className="text-xl text-foreground/60 leading-relaxed mb-10"
             >
               Empower your team to use AI responsibly with Spec-Driven Development.
               Centralize prompts, enforce policies, and measure understanding.
@@ -138,11 +138,11 @@ export default function Home() {
             >
               <Button size="lg" className="gap-2 group" asChild>
                 <Link href="/demo">
-                  Request Demo
+                  Get Started
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
+              <Button size="lg" variant="ghost" asChild>
                 <Link href="/product">Learn More</Link>
               </Button>
             </motion.div>
@@ -151,25 +151,25 @@ export default function Home() {
       </section>
 
       {/* Features Grid */}
-      <section className="border-b border-border/40">
-        <div className="mx-auto max-w-6xl px-6 py-24 lg:px-8">
+      <section className="py-20 sm:py-24">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
           <motion.div
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
             variants={stagger}
-            className="grid grid-cols-1 gap-8 md:grid-cols-2"
+            className="grid grid-cols-1 gap-6 md:grid-cols-2"
           >
             {features.map((feature, index) => (
               <motion.div key={feature.title} variants={fadeInUp}>
-                <Card className="h-full border-border/40 bg-card/50 backdrop-blur transition-colors hover:bg-card/80">
+                <Card className="h-full border-0 bg-foreground/5 backdrop-blur transition-colors hover:bg-foreground/[0.07]">
                   <CardHeader className="space-y-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-border/40 bg-background">
-                      <feature.icon className="h-6 w-6" />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground/5">
+                      <feature.icon className="h-5 w-5 text-foreground/70" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-medium mb-2">{feature.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed">
+                      <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                      <p className="text-foreground/60 leading-relaxed text-sm">
                         {feature.description}
                       </p>
                     </div>
@@ -182,8 +182,8 @@ export default function Home() {
       </section>
 
       {/* Benefits Section */}
-      <section className="border-b border-border/40">
-        <div className="mx-auto max-w-6xl px-6 py-24 lg:px-8">
+      <section className="py-20 sm:py-24">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
           <motion.div
             initial="initial"
             whileInView="animate"
@@ -193,20 +193,20 @@ export default function Home() {
           >
             <motion.h2
               variants={fadeInUp}
-              className="text-3xl font-medium mb-12 text-center"
+              className="text-3xl font-semibold mb-12 text-center"
             >
               Benefits for Your Team
             </motion.h2>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               {benefits.map((benefit, index) => (
                 <motion.div
                   key={index}
                   variants={fadeInUp}
-                  className="flex items-start gap-3 rounded-lg border border-border/40 bg-card/30 p-4 backdrop-blur transition-colors hover:bg-card/50"
+                  className="flex items-start gap-3 rounded-lg bg-foreground/5 p-4 backdrop-blur transition-colors hover:bg-foreground/[0.07]"
                 >
-                  <CheckCircle2 className="h-5 w-5 flex-shrink-0 mt-0.5" />
-                  <p className="leading-relaxed">{benefit}</p>
+                  <CheckCircle2 className="h-5 w-5 flex-shrink-0 mt-0.5 text-foreground/70" />
+                  <p className="leading-relaxed text-foreground/80">{benefit}</p>
                 </motion.div>
               ))}
             </div>
@@ -215,8 +215,8 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section className="border-b border-border/40">
-        <div className="mx-auto max-w-6xl px-6 py-24 lg:px-8">
+      <section className="py-20 sm:py-24">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
           <motion.div
             initial="initial"
             whileInView="animate"
@@ -224,38 +224,38 @@ export default function Home() {
             variants={stagger}
           >
             <motion.div variants={fadeInUp} className="text-center mb-16">
-              <h2 className="text-3xl font-medium mb-4">
+              <h2 className="text-3xl font-semibold mb-4">
                 Simple, Transparent Pricing
               </h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-lg text-foreground/60">
                 Choose the plan that fits your team
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
               {pricingPlans.map((plan) => (
                 <motion.div key={plan.name} variants={fadeInUp}>
                   <Card
-                    className={`h-full border-border/40 bg-card/30 backdrop-blur transition-all ${
-                      plan.featured ? "border-foreground/20 shadow-lg" : ""
+                    className={`h-full border-0 bg-foreground/5 backdrop-blur transition-all ${
+                      plan.featured ? "bg-foreground/[0.07]" : ""
                     }`}
                   >
                     <CardHeader className="space-y-6">
                       <div>
-                        <h3 className="text-xl font-medium mb-1">{plan.name}</h3>
-                        <p className="text-sm text-muted-foreground">
+                        <h3 className="text-lg font-semibold mb-1">{plan.name}</h3>
+                        <p className="text-sm text-foreground/60">
                           {plan.description}
                         </p>
                       </div>
 
                       <div className="flex items-baseline gap-1">
                         {plan.price === "Custom" ? (
-                          <span className="text-4xl font-medium">Custom</span>
+                          <span className="text-3xl font-semibold">Custom</span>
                         ) : (
                           <>
-                            <span className="text-sm text-muted-foreground">$</span>
-                            <span className="text-4xl font-medium">{plan.price}</span>
-                            <span className="text-sm text-muted-foreground">/month</span>
+                            <span className="text-sm text-foreground/60">$</span>
+                            <span className="text-3xl font-semibold">{plan.price}</span>
+                            <span className="text-sm text-foreground/60">/month</span>
                           </>
                         )}
                       </div>
@@ -265,15 +265,15 @@ export default function Home() {
                       <ul className="space-y-3">
                         {plan.features.map((feature, index) => (
                           <li key={index} className="flex items-start gap-2 text-sm">
-                            <Minus className="h-4 w-4 flex-shrink-0 mt-0.5" />
-                            <span className="text-muted-foreground">{feature}</span>
+                            <Minus className="h-4 w-4 flex-shrink-0 mt-0.5 text-foreground/60" />
+                            <span className="text-foreground/70">{feature}</span>
                           </li>
                         ))}
                       </ul>
 
                       <Button
                         className="w-full"
-                        variant={plan.featured ? "default" : "outline"}
+                        variant={plan.featured ? "default" : "ghost"}
                         asChild
                       >
                         <Link href="/demo">
@@ -290,7 +290,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24">
+      <section className="py-20 sm:py-24">
         <div className="mx-auto max-w-6xl px-6 lg:px-8">
           <motion.div
             initial="initial"
@@ -299,20 +299,20 @@ export default function Home() {
             variants={fadeInUp}
             className="mx-auto max-w-2xl text-center"
           >
-            <h2 className="text-3xl font-medium mb-4">
+            <h2 className="text-3xl font-semibold mb-4">
               Ready to Structure Your AI Adoption?
             </h2>
-            <p className="text-lg text-muted-foreground mb-10">
+            <p className="text-lg text-foreground/60 mb-10">
               Join forward-thinking teams building responsible AI workflows
             </p>
             <div className="flex items-center justify-center gap-4">
               <Button size="lg" className="gap-2 group" asChild>
                 <Link href="/demo">
-                  Request Demo
+                  Get Started
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
+              <Button size="lg" variant="ghost" asChild>
                 <Link href="/product">Learn More</Link>
               </Button>
             </div>
