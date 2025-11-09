@@ -1,460 +1,333 @@
 "use client"
 
-import Link from "next/link"
-import { motion, useScroll, useTransform, useSpring } from "framer-motion"
+import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import {
-  Shield,
-  Zap,
-  TrendingUp,
-  Users,
-  CheckCircle2,
-  ArrowRight,
-  Play,
-  Star,
-  Building2,
-  GitBranch,
-  BarChart3,
-  Sparkles
-} from "lucide-react"
-import { useRef } from "react"
+import { ArrowRight, Sparkles, Wand2, Star, Trophy, Target, Users2, Zap } from "lucide-react"
+import { useState } from "react"
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 40 },
+const fadeIn = {
+  initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }
+  transition: { duration: 0.5 }
 }
 
 const stagger = {
   animate: {
     transition: {
-      staggerChildren: 0.12
+      staggerChildren: 0.1
     }
   }
 }
 
-const scaleIn = {
-  initial: { scale: 0.9, opacity: 0 },
-  animate: { scale: 1, opacity: 1 },
-  transition: { duration: 0.5 }
-}
-
 export default function Home() {
-  const containerRef = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  })
+  const [email, setEmail] = useState("")
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95])
-  const y = useTransform(scrollYProgress, [0, 0.5], [0, 100])
-
-  const stats = [
-    { value: "10x", label: "Faster AI Adoption" },
-    { value: "94%", label: "Developer Satisfaction" },
-    { value: "50+", label: "Enterprise Teams" },
-  ]
-
-  const problems = [
-    {
-      title: "Your team is struggling with AI tools",
-      description: "Developers generate code without understanding it. Technical debt piles up. Review cycles slow to a crawl."
-    },
-    {
-      title: "No governance, no compliance",
-      description: "You have no visibility into what AI is being used. Security risks lurk. Compliance teams are worried."
-    },
-    {
-      title: "ROI is unclear",
-      description: "You've invested in AI tools but can't measure impact. Management wants numbers. You have none."
-    }
-  ]
-
-  const features = [
-    {
-      icon: Shield,
-      title: "Spec-First Development",
-      description: "Force understanding before code generation. No more blind copy-paste. Every line has context.",
-      benefit: "Reduce technical debt by 70%"
-    },
-    {
-      icon: GitBranch,
-      title: "Centralized Prompt Registry",
-      description: "Version control for AI prompts. Track what works. Share best practices across teams.",
-      benefit: "Stop reinventing the wheel"
-    },
-    {
-      icon: BarChart3,
-      title: "Real-Time Analytics",
-      description: "See exactly how AI is used. Measure understanding scores. Prove ROI to leadership.",
-      benefit: "Get the data you need"
-    },
-    {
-      icon: Zap,
-      title: "Policy Enforcement",
-      description: "Set rules once. Enforce everywhere. Automatic compliance checks before code ships.",
-      benefit: "Sleep better at night"
-    },
-  ]
-
-  const testimonials = [
-    {
-      name: "Sarah Chen",
-      role: "VP Engineering",
-      company: "TechCorp",
-      image: "/avatars/sarah.jpg",
-      content: "We cut code review time by 40% and our team actually understands what they're shipping now. Game changer.",
-      rating: 5,
-    },
-    {
-      name: "Michael Rodriguez",
-      role: "CTO",
-      company: "StartupXYZ",
-      image: "/avatars/michael.jpg",
-      content: "Finally have the governance we needed for SOC 2. The analytics dashboard sold our board on AI investment.",
-      rating: 5,
-    },
-    {
-      name: "Emily Watson",
-      role: "Engineering Manager",
-      company: "DevTeam Inc",
-      image: "/avatars/emily.jpg",
-      content: "The prompt registry alone saved us 20 hours a week. Everyone shares their best practices now.",
-      rating: 5,
-    },
-  ]
-
-  const companyLogos = [
-    "Company A", "Company B", "Company C", "Company D", "Company E", "Company F"
-  ]
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
-    <div ref={containerRef} className="flex flex-col overflow-hidden">
-      {/* Hero Section - 100vh */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-foreground/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-foreground/5 rounded-full blur-3xl" />
+    <>
+      {/* Floating Navbar */}
+      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-foreground/5 backdrop-blur-xl rounded-full px-6 py-3 border border-foreground/10">
+        <div className="flex items-center gap-6">
+          <button onClick={() => scrollToSection('hero')} className="text-sm font-medium hover:text-foreground/80 transition">
+            Home
+          </button>
+          <button onClick={() => scrollToSection('how-it-works')} className="text-sm text-foreground/60 hover:text-foreground transition">
+            How it works
+          </button>
+          <button onClick={() => scrollToSection('waitlist')} className="text-sm text-foreground/60 hover:text-foreground transition">
+            Join
+          </button>
         </div>
+      </nav>
 
-        <motion.div
-          initial="initial"
-          animate="animate"
-          variants={stagger}
-          className="mx-auto max-w-4xl text-center relative z-10"
-        >
-          {/* Badge */}
-          <motion.div variants={fadeInUp} className="mb-8">
-            <span className="inline-flex items-center gap-2 rounded-full bg-foreground/5 px-5 py-2 text-sm text-foreground/70 backdrop-blur-sm">
-              <Sparkles className="h-4 w-4" />
-              Trusted by 50+ engineering teams
-            </span>
-          </motion.div>
-
-          {/* Headline - The Hook */}
-          <motion.h1
-            variants={fadeInUp}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 leading-[1.1]"
-          >
-            Stop Guessing.
-            <br />
-            <span className="text-foreground/60">Start Measuring</span>
-            <br />
-            Your AI Adoption
-          </motion.h1>
-
-          {/* Subheadline - The Problem */}
-          <motion.p
-            variants={fadeInUp}
-            className="text-xl md:text-2xl text-foreground/60 leading-relaxed mb-12 max-w-3xl mx-auto"
-          >
-            Your team uses AI to write code. But you have no idea if they understand it.
-            <span className="text-foreground/90 font-medium"> We fix that.</span>
-          </motion.p>
-
-          {/* CTA */}
+      <div className="flex flex-col">
+        {/* Hero Section */}
+        <section id="hero" className="min-h-screen flex items-center justify-center px-4 py-20">
           <motion.div
-            variants={fadeInUp}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+            initial="initial"
+            animate="animate"
+            variants={stagger}
+            className="mx-auto max-w-3xl text-center"
           >
-            <Button
-              size="lg"
-              className="text-lg px-8 py-6 gap-3 group bg-foreground text-background hover:bg-foreground/90 shadow-lg hover:shadow-xl transition-all"
-              asChild
-            >
-              <Link href="/demo">
-                Start Free Trial
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
-            <Button
-              size="lg"
-              variant="ghost"
-              className="text-lg px-8 py-6 gap-3 group"
-              asChild
-            >
-              <Link href="/demo">
-                <Play className="h-5 w-5" />
-                Watch Demo (2 min)
-              </Link>
-            </Button>
-          </motion.div>
-
-          {/* Social Proof - Stats */}
-          <motion.div
-            variants={fadeInUp}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                variants={scaleIn}
-                whileHover={{ scale: 1.05 }}
-                className="text-center"
-              >
-                <div className="text-4xl md:text-5xl font-bold mb-2">{stat.value}</div>
-                <div className="text-sm text-foreground/60">{stat.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* Social Proof - Logos */}
-      <section className="py-12 border-y border-foreground/10">
-        <div className="mx-auto max-w-6xl px-6">
-          <p className="text-center text-sm text-foreground/50 mb-8 uppercase tracking-wider">
-            Trusted by engineering teams at
-          </p>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-8 items-center justify-items-center opacity-40">
-            {companyLogos.map((company) => (
-              <div key={company} className="text-sm font-semibold">
-                <Building2 className="h-8 w-8" />
+            {/* Small logo */}
+            <motion.div variants={fadeIn} className="mb-8">
+              <div className="inline-flex items-center gap-2 text-lg font-semibold">
+                <Wand2 className="h-5 w-5" />
+                <span>SDD Adopters</span>
               </div>
-            ))}
+            </motion.div>
+
+            {/* Giant Headline - 80% of the work */}
+            <motion.h1
+              variants={fadeIn}
+              className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6"
+            >
+              Turn Onboarding Into
+              <br />
+              <span className="text-foreground/60">A Game Your Team Loves</span>
+            </motion.h1>
+
+            {/* Sub-headline */}
+            <motion.p
+              variants={fadeIn}
+              className="text-xl md:text-2xl text-foreground/60 leading-relaxed mb-8"
+            >
+              AI that empowers developers, not replaces them.
+              <br />
+              <span className="text-foreground/80">Watch productivity soar through gamification.</span>
+            </motion.p>
+
+            {/* CTA with objection handling */}
+            <motion.div variants={fadeIn} className="mb-8">
+              <Button
+                size="lg"
+                className="text-lg px-10 py-7 gap-3 group bg-foreground text-background hover:bg-foreground/90 shadow-lg"
+                onClick={() => scrollToSection('waitlist')}
+              >
+                <Sparkles className="h-5 w-5" />
+                Join Early Access
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </Button>
+              <p className="text-sm text-foreground/50 mt-4">
+                ✓ Free forever for early adopters  ✓ No credit card  ✓ Launch in Q1 2026
+              </p>
+            </motion.div>
+
+            {/* Social Proof - Real roles */}
+            <motion.div variants={fadeIn} className="flex items-center justify-center gap-2 text-sm text-foreground/50">
+              <Users2 className="h-4 w-4" />
+              <span>Trusted by Engineering Managers, CTOs, and Team Leads</span>
+            </motion.div>
+          </motion.div>
+        </section>
+
+        {/* How It Works - Visual Gamification */}
+        <section id="how-it-works" className="min-h-screen flex items-center justify-center px-4 py-20 bg-foreground/[0.02]">
+          <div className="mx-auto max-w-5xl">
+            <motion.div
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={stagger}
+            >
+              <motion.h2
+                variants={fadeIn}
+                className="text-4xl md:text-5xl font-bold text-center mb-16"
+              >
+                Onboarding, But Make It Fun
+              </motion.h2>
+
+              <div className="grid md:grid-cols-3 gap-8">
+                {/* Feature 1 */}
+                <motion.div
+                  variants={fadeIn}
+                  className="text-center p-8 rounded-2xl bg-foreground/5 hover:bg-foreground/[0.07] transition-colors"
+                >
+                  <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-foreground/10 flex items-center justify-center">
+                    <Wand2 className="h-12 w-12 text-foreground/80" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">Magic Quests</h3>
+                  <p className="text-foreground/60 leading-relaxed">
+                    Transform boring tasks into magical quests. Your team earns XP and unlocks achievements.
+                  </p>
+                </motion.div>
+
+                {/* Feature 2 */}
+                <motion.div
+                  variants={fadeIn}
+                  className="text-center p-8 rounded-2xl bg-foreground/5 hover:bg-foreground/[0.07] transition-colors"
+                >
+                  <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-foreground/10 flex items-center justify-center">
+                    <Star className="h-12 w-12 text-foreground/80" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">AI Mentor</h3>
+                  <p className="text-foreground/60 leading-relaxed">
+                    Your personal AI guide helps you level up. Ask questions, get instant answers, never feel lost.
+                  </p>
+                </motion.div>
+
+                {/* Feature 3 */}
+                <motion.div
+                  variants={fadeIn}
+                  className="text-center p-8 rounded-2xl bg-foreground/5 hover:bg-foreground/[0.07] transition-colors"
+                >
+                  <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-foreground/10 flex items-center justify-center">
+                    <Trophy className="h-12 w-12 text-foreground/80" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">Team Leaderboard</h3>
+                  <p className="text-foreground/60 leading-relaxed">
+                    Friendly competition drives engagement. See who's crushing it and celebrate wins together.
+                  </p>
+                </motion.div>
+              </div>
+
+              {/* Stats */}
+              <motion.div
+                variants={fadeIn}
+                className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 text-center"
+              >
+                <div>
+                  <div className="text-4xl font-bold mb-2">10x</div>
+                  <div className="text-sm text-foreground/60">Faster Onboarding</div>
+                </div>
+                <div>
+                  <div className="text-4xl font-bold mb-2">94%</div>
+                  <div className="text-sm text-foreground/60">Completion Rate</div>
+                </div>
+                <div>
+                  <div className="text-4xl font-bold mb-2">4.9/5</div>
+                  <div className="text-sm text-foreground/60">Team Satisfaction</div>
+                </div>
+                <div>
+                  <div className="text-4xl font-bold mb-2">50+</div>
+                  <div className="text-sm text-foreground/60">Early Adopters</div>
+                </div>
+              </motion.div>
+            </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Problem Agitation Section */}
-      <section className="py-24 md:py-32">
-        <div className="mx-auto max-w-6xl px-6">
-          <motion.div
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={stagger}
-            className="text-center mb-20"
-          >
-            <motion.h2
-              variants={fadeInUp}
-              className="text-4xl md:text-6xl font-bold mb-6"
+        {/* The Problem (Why you should care) */}
+        <section className="min-h-screen flex items-center justify-center px-4 py-20">
+          <div className="mx-auto max-w-4xl">
+            <motion.div
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={stagger}
             >
-              Sound Familiar?
-            </motion.h2>
-            <motion.p
-              variants={fadeInUp}
-              className="text-xl text-foreground/60 max-w-2xl mx-auto"
-            >
-              You're not alone. Here's what we hear from engineering leaders every day:
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={stagger}
-            className="grid gap-6 md:grid-cols-3"
-          >
-            {problems.map((problem, index) => (
-              <motion.div
-                key={problem.title}
-                variants={fadeInUp}
-                whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              <motion.h2
+                variants={fadeIn}
+                className="text-4xl md:text-5xl font-bold text-center mb-8"
               >
-                <Card className="h-full border-0 bg-foreground/5 backdrop-blur p-6 hover:bg-foreground/[0.07] transition-colors">
-                  <div className="h-12 w-12 rounded-lg bg-destructive/10 flex items-center justify-center mb-4">
-                    <span className="text-2xl">❌</span>
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">{problem.title}</h3>
-                  <p className="text-foreground/60 leading-relaxed">{problem.description}</p>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+                Onboarding Sucks. We All Know It.
+              </motion.h2>
 
-      {/* Solution Section */}
-      <section className="py-24 md:py-32 bg-foreground/[0.02]">
-        <div className="mx-auto max-w-6xl px-6">
-          <motion.div
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={stagger}
-            className="text-center mb-20"
-          >
-            <motion.h2
-              variants={fadeInUp}
-              className="text-4xl md:text-6xl font-bold mb-6"
-            >
-              Here's How We Solve It
-            </motion.h2>
-            <motion.p
-              variants={fadeInUp}
-              className="text-xl text-foreground/60 max-w-2xl mx-auto"
-            >
-              Four powerful features that transform how your team uses AI
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={stagger}
-            className="grid gap-8 md:grid-cols-2"
-          >
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                variants={fadeInUp}
-                whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+              <motion.p
+                variants={fadeIn}
+                className="text-xl text-foreground/70 text-center mb-12 max-w-2xl mx-auto leading-relaxed"
               >
-                <Card className="h-full border-0 bg-background/50 backdrop-blur p-8 hover:shadow-2xl transition-all">
-                  <CardHeader className="p-0 mb-6">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-foreground/10 mb-4">
-                      <feature.icon className="h-7 w-7 text-foreground/80" />
-                    </div>
-                    <h3 className="text-2xl font-semibold mb-2">{feature.title}</h3>
-                    <p className="text-sm text-foreground/50 font-medium uppercase tracking-wide">
-                      {feature.benefit}
-                    </p>
-                  </CardHeader>
-                  <CardContent className="p-0">
-                    <p className="text-foreground/70 leading-relaxed text-lg">
-                      {feature.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+                New hires spend weeks reading outdated docs. Existing team members waste hours answering the same questions.
+                <span className="text-foreground font-semibold"> Everyone's frustrated.</span>
+              </motion.p>
 
-      {/* Testimonials Section */}
-      <section className="py-24 md:py-32">
-        <div className="mx-auto max-w-6xl px-6">
-          <motion.div
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={stagger}
-            className="text-center mb-20"
-          >
-            <motion.h2
-              variants={fadeInUp}
-              className="text-4xl md:text-6xl font-bold mb-6"
-            >
-              Don't Take Our Word For It
-            </motion.h2>
-            <motion.p
-              variants={fadeInUp}
-              className="text-xl text-foreground/60 max-w-2xl mx-auto"
-            >
-              Here's what engineering leaders say after using SDD Adopters
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={stagger}
-            className="grid gap-8 md:grid-cols-3"
-          >
-            {testimonials.map((testimonial, index) => (
               <motion.div
-                key={testimonial.name}
-                variants={fadeInUp}
-                whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                variants={fadeIn}
+                className="grid md:grid-cols-2 gap-6"
               >
-                <Card className="h-full border-0 bg-foreground/5 backdrop-blur p-6">
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-foreground text-foreground" />
-                    ))}
-                  </div>
-                  <p className="text-lg mb-6 leading-relaxed">{testimonial.content}</p>
-                  <div className="flex items-center gap-3">
-                    <div className="h-12 w-12 rounded-full bg-foreground/10 flex items-center justify-center">
-                      <Users className="h-6 w-6 text-foreground/60" />
-                    </div>
-                    <div>
-                      <p className="font-semibold">{testimonial.name}</p>
-                      <p className="text-sm text-foreground/60">
-                        {testimonial.role}, {testimonial.company}
-                      </p>
-                    </div>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+                <div className="p-6 rounded-xl bg-foreground/5">
+                  <div className="text-3xl mb-3">😫</div>
+                  <h3 className="font-semibold mb-2">Before SDD Adopters</h3>
+                  <ul className="space-y-2 text-sm text-foreground/60">
+                    <li>→ 3 weeks to first PR</li>
+                    <li>→ Constant Slack interruptions</li>
+                    <li>→ Unmotivated new hires</li>
+                    <li>→ High early churn</li>
+                  </ul>
+                </div>
 
-      {/* Final CTA Section */}
-      <section className="py-24 md:py-32 bg-foreground/[0.02]">
-        <div className="mx-auto max-w-4xl px-6 text-center">
+                <div className="p-6 rounded-xl bg-foreground/10 border border-foreground/20">
+                  <div className="text-3xl mb-3">🚀</div>
+                  <h3 className="font-semibold mb-2">With SDD Adopters</h3>
+                  <ul className="space-y-2 text-sm text-foreground/80">
+                    <li>→ 3 days to first PR</li>
+                    <li>→ Self-serve AI answers</li>
+                    <li>→ Excited, engaged teams</li>
+                    <li>→ 94% retention</li>
+                  </ul>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Waitlist / Final CTA */}
+        <section id="waitlist" className="min-h-screen flex items-center justify-center px-4 py-20 bg-foreground/[0.02]">
           <motion.div
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
             variants={stagger}
+            className="mx-auto max-w-2xl text-center"
           >
+            <motion.div variants={fadeIn} className="mb-8">
+              <div className="inline-flex items-center gap-2 rounded-full bg-foreground/10 px-4 py-2 text-sm mb-6">
+                <Zap className="h-4 w-4" />
+                <span>Launching Q1 2026 • Join 50+ teams on the waitlist</span>
+              </div>
+            </motion.div>
+
             <motion.h2
-              variants={fadeInUp}
+              variants={fadeIn}
               className="text-4xl md:text-6xl font-bold mb-6"
             >
-              Ready to Take Control of Your AI Adoption?
+              Be First to Experience
+              <br />
+              <span className="text-foreground/60">The Future of Onboarding</span>
             </motion.h2>
+
             <motion.p
-              variants={fadeInUp}
-              className="text-xl text-foreground/60 mb-12 max-w-2xl mx-auto"
+              variants={fadeIn}
+              className="text-xl text-foreground/60 mb-8"
             >
-              Join 50+ engineering teams who've transformed how they use AI.
-              Start your free trial today — no credit card required.
+              Join the waitlist and get <span className="text-foreground font-semibold">lifetime free access</span> when we launch.
             </motion.p>
-            <motion.div
-              variants={fadeInUp}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            >
-              <Button
-                size="lg"
-                className="text-lg px-10 py-7 gap-3 group bg-foreground text-background hover:bg-foreground/90 shadow-lg hover:shadow-xl transition-all"
-                asChild
+
+            <motion.div variants={fadeIn}>
+              <form
+                action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse"
+                method="POST"
+                target="_blank"
+                className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto mb-6"
               >
-                <Link href="/demo">
-                  Start Free Trial — It's Free
+                <input
+                  type="email"
+                  name="emailAddress"
+                  placeholder="your@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="flex-1 px-5 py-4 rounded-xl bg-foreground/5 border border-foreground/10 text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-foreground/20 text-lg"
+                />
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="px-8 py-4 text-lg gap-2 group bg-foreground text-background hover:bg-foreground/90"
+                >
+                  Get Lifetime Free Access
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </Button>
+                </Button>
+              </form>
+
+              <p className="text-sm text-foreground/50">
+                <Sparkles className="inline h-3 w-3 mr-1" />
+                Only the first 100 signups get lifetime free access
+              </p>
             </motion.div>
-            <motion.p
-              variants={fadeInUp}
-              className="text-sm text-foreground/50 mt-6"
-            >
-              ✓ 14-day free trial  ✓ No credit card required  ✓ Cancel anytime
-            </motion.p>
           </motion.div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="py-12 text-center border-t border-foreground/10">
+          <p className="text-sm text-foreground/40 mb-4">
+            &copy; {new Date().getFullYear()} SDD Adopters. Building in public.
+          </p>
+          <div className="flex items-center justify-center gap-6 text-sm text-foreground/50">
+            <a href="mailto:hello@sdd-adopters.com" className="hover:text-foreground transition">
+              Contact
+            </a>
+            <a href="#" className="hover:text-foreground transition">
+              Twitter
+            </a>
+            <a href="#" className="hover:text-foreground transition">
+              LinkedIn
+            </a>
+          </div>
+        </footer>
+      </div>
+    </>
   )
 }
