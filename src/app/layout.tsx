@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "SDD Adopters — AI that empowers, not replaces",
-  description: "Gamify your onboarding with AI that empowers teams. Join the early access waitlist for the future of developer onboarding.",
+  title: "SDD Adopters — Turn Onboarding Into A Game Your Team Loves",
+  description: "AI-powered onboarding platform with gamification. Turn boring tasks into magical quests. 10x faster onboarding, 94% completion rate. Join early access for lifetime free access.",
   keywords: [
     "AI onboarding",
     "gamified learning",
@@ -28,21 +26,21 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://sdd-adopters.com",
     siteName: "SDD Adopters",
-    title: "SDD Adopters — AI that empowers, not replaces",
-    description: "Gamify your onboarding with AI that empowers teams. Join the early access waitlist.",
+    title: "Turn Onboarding Into A Game Your Team Loves",
+    description: "AI-powered onboarding with gamification. 10x faster onboarding, 94% completion rate. Join early access for lifetime free access.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "SDD Adopters - AI-powered onboarding platform",
+        alt: "SDD Adopters - Gamified AI onboarding platform",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SDD Adopters — AI that empowers, not replaces",
-    description: "Gamify your onboarding with AI that empowers teams. Join the early access waitlist.",
+    title: "Turn Onboarding Into A Game Your Team Loves",
+    description: "AI-powered onboarding with gamification. 10x faster, 94% completion. Get lifetime free access.",
     images: ["/og-image.png"],
     creator: "@sddadopters",
   },
@@ -88,7 +86,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark scroll-smooth">
       <head>
         <script
           type="application/ld+json"
@@ -96,11 +94,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
-        <div className="flex min-h-screen flex-col">
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
+        {children}
       </body>
     </html>
   );
