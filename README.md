@@ -1,33 +1,35 @@
 # SDD Adopters
 
-A modern Next.js boilerplate with the latest features including app router, TypeScript, Tailwind CSS, and shadcn/ui components.
+AI-powered onboarding platform with gamification. Turn boring tasks into magical quests.
 
 ## Features
 
 - ⚡ **Next.js 16** - Latest version with app router
-- 🎨 **Tailwind CSS v4** - Utility-first CSS framework
-- 🧩 **shadcn/ui** - Beautiful, accessible component library
+- 🎨 **Tailwind CSS v4** - Utility-first CSS framework with Alcove-inspired warm beige palette
+- 🎭 **Framer Motion** - Buttery smooth animations
+- 📧 **Resend** - Email service for waitlist notifications
+- 🤖 **Botpoison** - Bot protection for forms
 - 📘 **TypeScript** - Type safety and better developer experience
-- 🔍 **ESLint** - Code linting and quality checks
 - 🎯 **Import Aliases** - Clean imports with `@/` prefix
-- 📁 **Organized Folder Structure** - Clean and scalable architecture
 
 ## Folder Structure
 
 ```
 src/
-├── app/                    # Next.js app router pages
-│   ├── layout.tsx          # Root layout
-│   ├── page.tsx            # Home page
-│   └── globals.css         # Global styles
+├── app/                    # Next.js app router
+│   ├── api/                # API routes
+│   │   └── waitlist/       # Waitlist endpoint
+│   ├── layout.tsx          # Root layout with SEO
+│   ├── page.tsx            # Landing page
+│   └── globals.css         # Global styles (Alcove colors)
 ├── components/             # React components
-│   ├── ui/                 # shadcn/ui components
-│   │   ├── button.tsx
-│   │   └── card.tsx
-│   └── example-card.tsx    # Example component
-├── lib/                    # Utility functions
-│   └── utils.ts            # Common utilities (cn helper)
-└── hooks/                  # Custom React hooks
+│   └── ui/                 # shadcn/ui components
+│       └── button.tsx
+└── lib/                    # Utility functions
+    └── utils.ts            # Common utilities (cn helper)
+public/
+├── robots.txt              # SEO robots file
+└── sitemap.xml             # SEO sitemap
 ```
 
 ## Getting Started
@@ -49,12 +51,23 @@ cd sdd-adopters
 npm install
 ```
 
-3. Run the development server:
+3. Set up environment variables:
+```bash
+cp .env.example .env.local
+```
+
+Then edit `.env.local` with your actual API keys:
+- **RESEND_API_KEY**: Get from [Resend](https://resend.com/api-keys)
+- **NEXT_PUBLIC_BOTPOISON_PUBLIC_KEY**: Get from [Botpoison](https://botpoison.com)
+- **BOTPOISON_SECRET_KEY**: Get from [Botpoison](https://botpoison.com)
+- **NOTIFICATION_EMAIL**: Your email to receive waitlist notifications
+
+4. Run the development server:
 ```bash
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## Available Scripts
 
