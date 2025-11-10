@@ -3,7 +3,8 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Sparkles, Wand2, Star, Trophy, Target, Users2, Zap } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import Botpoison from "@botpoison/browser"
 
 const fadeIn = {
   initial: { opacity: 0, y: 24 },
@@ -34,9 +35,56 @@ const stagger = {
 
 export default function Home() {
   const [email, setEmail] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [botpoison, setBotpoison] = useState<any>(null)
+
+  useEffect(() => {
+    const bp = new Botpoison({
+      publicKey: process.env.NEXT_PUBLIC_BOTPOISON_PUBLIC_KEY || 'pk_xxxxxxxx'
+    })
+    setBotpoison(bp)
+  }, [])
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!email || isSubmitting) return
+
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      // Get Botpoison challenge solution
+      const { solution } = await botpoison!.challenge()
+
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          botpoison: solution,
+        }),
+      })
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        setEmail('')
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -302,28 +350,40 @@ export default function Home() {
 
             <motion.div variants={fadeIn}>
               <form
-                action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse"
-                method="POST"
-                target="_blank"
+                onSubmit={handleSubmit}
                 className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto mb-6"
               >
                 <input
                   type="email"
-                  name="emailAddress"
+                  name="email"
                   placeholder="your@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="flex-1 h-14 px-5 rounded-xl bg-background border border-foreground/20 text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary/50 text-lg transition-all duration-200"
+                  disabled={isSubmitting}
+                  className="flex-1 h-14 px-5 rounded-xl bg-background border border-foreground/20 text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary/50 text-lg transition-all duration-200 disabled:opacity-50"
                 />
                 <Button
                   type="submit"
-                  className="h-14 px-8 text-lg gap-2 group bg-foreground text-background hover:bg-foreground/90 rounded-xl transition-all duration-200"
+                  disabled={isSubmitting || !botpoison}
+                  className="h-14 px-8 text-lg gap-2 group bg-foreground text-background hover:bg-foreground/90 rounded-xl transition-all duration-200 disabled:opacity-50"
                 >
-                  Get Lifetime Free Access
+                  {isSubmitting ? 'Joining...' : 'Get Lifetime Free Access'}
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Button>
               </form>
+
+              {submitStatus === 'success' && (
+                <p className="text-sm text-primary font-medium mb-4">
+                  ✓ Success! Check your email for confirmation.
+                </p>
+              )}
+
+              {submitStatus === 'error' && (
+                <p className="text-sm text-destructive font-medium mb-4">
+                  ✗ Something went wrong. Please try again.
+                </p>
+              )}
 
               <p className="text-sm text-foreground/50">
                 <Sparkles className="inline h-3 w-3 mr-1" />
