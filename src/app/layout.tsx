@@ -2,47 +2,47 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SDD Adopters — Turn Onboarding Into A Game Your Team Loves",
-  description: "AI-powered onboarding platform with gamification. Turn boring tasks into magical quests. 10x faster onboarding, 94% completion rate. Join early access for lifetime free access.",
+  title: "Onboarding Layer — Turn Onboarding Into A Game Your Team Actually Loves",
+  description: "Gamify technical onboarding with missions & badges. Cut training time by 40% while boosting motivation and retention. AI that empowers, not replaces.",
   keywords: [
     "AI onboarding",
-    "gamified learning",
+    "gamified onboarding",
     "developer onboarding",
-    "AI empowerment",
+    "onboarding gamification",
     "team onboarding platform",
-    "AI-powered training",
+    "technical onboarding",
     "developer enablement",
-    "onboarding gamification"
+    "onboarding missions"
   ],
-  authors: [{ name: "SDD Adopters" }],
-  creator: "SDD Adopters",
-  publisher: "SDD Adopters",
-  metadataBase: new URL('https://sdd-adopters.com'),
+  authors: [{ name: "Onboarding Layer" }],
+  creator: "Onboarding Layer",
+  publisher: "Onboarding Layer",
+  metadataBase: new URL('https://onboardinglayer.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://sdd-adopters.com",
-    siteName: "SDD Adopters",
-    title: "Turn Onboarding Into A Game Your Team Loves",
-    description: "AI-powered onboarding with gamification. 10x faster onboarding, 94% completion rate. Join early access for lifetime free access.",
+    url: "https://onboardinglayer.com",
+    siteName: "Onboarding Layer",
+    title: "Turn Onboarding Into A Game Your Team Actually Loves",
+    description: "Gamify onboarding with missions & badges. Cut training time by 40%. AI that empowers, not replaces.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "SDD Adopters - Gamified AI onboarding platform",
+        alt: "Onboarding Layer - Gamified onboarding platform",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Turn Onboarding Into A Game Your Team Loves",
-    description: "AI-powered onboarding with gamification. 10x faster, 94% completion. Get lifetime free access.",
+    title: "Turn Onboarding Into A Game Your Team Actually Loves",
+    description: "Gamify onboarding with missions & badges. Cut training time by 40%.",
     images: ["/og-image.png"],
-    creator: "@sddadopters",
+    creator: "@onboardinglayer",
   },
   robots: {
     index: true,
@@ -64,9 +64,9 @@ export const metadata: Metadata = {
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "SDD Adopters",
+  "name": "Onboarding Layer",
   "applicationCategory": "BusinessApplication",
-  "description": "AI-powered onboarding platform that empowers teams through gamification",
+  "description": "Gamified technical onboarding platform with missions and badges. AI that empowers, not replaces.",
   "offers": {
     "@type": "Offer",
     "price": "0",

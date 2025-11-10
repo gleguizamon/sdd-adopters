@@ -2,32 +2,32 @@
 
 @layer base {
   :root {
-    /* Alcove-inspired: warm beige palette with subtle accents */
-    --background: 35 100% 94%;
-    --foreground: 12 7% 15%;
-    --card: 35 100% 96%;
-    --card-foreground: 12 7% 15%;
-    --popover: 35 100% 96%;
-    --popover-foreground: 12 7% 15%;
-    --primary: 262 70% 55%;
-    --primary-foreground: 35 100% 98%;
-    --secondary: 35 40% 88%;
-    --secondary-foreground: 12 7% 15%;
-    --muted: 35 40% 88%;
-    --muted-foreground: 12 7% 45%;
-    --accent: 262 70% 55%;
-    --accent-foreground: 35 100% 98%;
+    /* Brutalist-minimal palette: clean beige background with lavender accent */
+    --background: 36 36% 97%;  /* #FAF7F2 */
+    --foreground: 0 0% 7%;     /* #111111 */
+    --card: 36 36% 98%;
+    --card-foreground: 0 0% 7%;
+    --popover: 36 36% 98%;
+    --popover-foreground: 0 0% 7%;
+    --primary: 262 68% 74%;    /* #A884F8 lavender */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 90%;
+    --secondary-foreground: 0 0% 7%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 262 68% 74%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 35 100% 98%;
-    --border: 35 30% 85%;
-    --input: 35 40% 88%;
-    --ring: 262 70% 55%;
-    --chart-1: 262 70% 55%;
-    --chart-2: 200 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 85%;
+    --input: 0 0% 90%;
+    --ring: 262 68% 74%;
+    --chart-1: 262 68% 74%;
+    --chart-2: 173 100% 40%;   /* #00C48C teal */
     --chart-3: 280 65% 60%;
-    --chart-4: 35 80% 65%;
+    --chart-4: 36 80% 65%;
     --chart-5: 320 60% 55%;
-    --radius: 0.75rem;
+    --radius: 0.5rem;
   }
 
   .dark {
