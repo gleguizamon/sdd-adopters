@@ -42,7 +42,7 @@ export default function Home() {
   return (
     <>
       {/* Floating Navbar */}
-      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-background/80 backdrop-blur-xl rounded-full px-6 py-3 border border-foreground/10 shadow-lg">
+      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-background/90 backdrop-blur-xl rounded-full px-6 py-3 border border-foreground/10 shadow-sm">
         <div className="flex items-center gap-6">
           <button onClick={() => scrollToSection('hero')} className="text-sm font-medium hover:text-primary transition-colors duration-200">
             Home
@@ -123,7 +123,7 @@ export default function Home() {
         </section>
 
         {/* How It Works - Visual Gamification */}
-        <section id="how-it-works" className="min-h-screen flex items-center justify-center px-4 py-20 bg-foreground/[0.02]">
+        <section id="how-it-works" className="min-h-screen flex items-center justify-center px-4 py-20 bg-secondary/30">
           <div className="mx-auto max-w-5xl">
             <motion.div
               initial="initial"
@@ -144,14 +144,14 @@ export default function Home() {
                   variants={fadeIn}
                   whileHover={{ y: -4, scale: 1.01 }}
                   transition={{ duration: 0.3, ease: [0.22, 0.68, 0.22, 1] }}
-                  className="text-center p-8 rounded-2xl bg-foreground/5 hover:bg-primary/10 border border-transparent hover:border-primary/20 transition-all duration-300 group cursor-pointer"
+                  className="text-center p-8 rounded-2xl bg-background hover:bg-primary/5 border border-foreground/10 hover:border-primary/30 transition-all duration-300 group cursor-pointer shadow-sm hover:shadow-md"
                 >
                   <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
                     <Wand2 className="h-12 w-12 text-primary" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3">Magic Quests</h3>
-                  <p className="text-foreground/60 leading-relaxed">
-                    Transform boring tasks into <span className="text-primary">magical quests</span>. Your team earns XP and unlocks achievements.
+                  <p className="text-foreground/70 leading-relaxed">
+                    Transform boring tasks into <span className="text-primary font-medium">magical quests</span>. Your team earns XP and unlocks achievements.
                   </p>
                 </motion.div>
 
@@ -160,14 +160,14 @@ export default function Home() {
                   variants={fadeIn}
                   whileHover={{ y: -4, scale: 1.01 }}
                   transition={{ duration: 0.3, ease: [0.22, 0.68, 0.22, 1] }}
-                  className="text-center p-8 rounded-2xl bg-foreground/5 hover:bg-chart-3/10 border border-transparent hover:border-chart-3/20 transition-all duration-300 group cursor-pointer"
+                  className="text-center p-8 rounded-2xl bg-background hover:bg-chart-3/5 border border-foreground/10 hover:border-chart-3/30 transition-all duration-300 group cursor-pointer shadow-sm hover:shadow-md"
                 >
                   <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-chart-3/10 flex items-center justify-center group-hover:bg-chart-3/20 transition-colors duration-300">
                     <Star className="h-12 w-12 text-chart-3" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3">AI Mentor</h3>
-                  <p className="text-foreground/60 leading-relaxed">
-                    Your personal <span className="text-chart-3">AI guide</span> helps you level up. Never feel lost again.
+                  <p className="text-foreground/70 leading-relaxed">
+                    Your personal <span className="text-chart-3 font-medium">AI guide</span> helps you level up. Never feel lost again.
                   </p>
                 </motion.div>
 
@@ -176,14 +176,14 @@ export default function Home() {
                   variants={fadeIn}
                   whileHover={{ y: -4, scale: 1.01 }}
                   transition={{ duration: 0.3, ease: [0.22, 0.68, 0.22, 1] }}
-                  className="text-center p-8 rounded-2xl bg-foreground/5 hover:bg-chart-2/10 border border-transparent hover:border-chart-2/20 transition-all duration-300 group cursor-pointer"
+                  className="text-center p-8 rounded-2xl bg-background hover:bg-chart-2/5 border border-foreground/10 hover:border-chart-2/30 transition-all duration-300 group cursor-pointer shadow-sm hover:shadow-md"
                 >
                   <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-chart-2/10 flex items-center justify-center group-hover:bg-chart-2/20 transition-colors duration-300">
                     <Trophy className="h-12 w-12 text-chart-2" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3">Team Leaderboard</h3>
-                  <p className="text-foreground/60 leading-relaxed">
-                    <span className="text-chart-2">Friendly competition</span> drives engagement. Celebrate wins together.
+                  <p className="text-foreground/70 leading-relaxed">
+                    <span className="text-chart-2 font-medium">Friendly competition</span> drives engagement. Celebrate wins together.
                   </p>
                 </motion.div>
               </div>
@@ -193,19 +193,19 @@ export default function Home() {
                 variants={fadeIn}
                 className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 text-center"
               >
-                <div className="p-4 rounded-xl hover:bg-foreground/5 transition-colors duration-300">
+                <div className="p-4 rounded-xl hover:bg-background transition-colors duration-300">
                   <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-chart-3 bg-clip-text text-transparent">10x</div>
                   <div className="text-sm text-foreground/60">Faster Onboarding</div>
                 </div>
-                <div className="p-4 rounded-xl hover:bg-foreground/5 transition-colors duration-300">
+                <div className="p-4 rounded-xl hover:bg-background transition-colors duration-300">
                   <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-chart-2 to-primary bg-clip-text text-transparent">94%</div>
                   <div className="text-sm text-foreground/60">Completion Rate</div>
                 </div>
-                <div className="p-4 rounded-xl hover:bg-foreground/5 transition-colors duration-300">
+                <div className="p-4 rounded-xl hover:bg-background transition-colors duration-300">
                   <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-chart-3 to-chart-2 bg-clip-text text-transparent">4.9/5</div>
                   <div className="text-sm text-foreground/60">Team Satisfaction</div>
                 </div>
-                <div className="p-4 rounded-xl hover:bg-foreground/5 transition-colors duration-300">
+                <div className="p-4 rounded-xl hover:bg-background transition-colors duration-300">
                   <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-chart-2 bg-clip-text text-transparent">50+</div>
                   <div className="text-sm text-foreground/60">Early Adopters</div>
                 </div>
@@ -242,10 +242,10 @@ export default function Home() {
                 variants={fadeIn}
                 className="grid md:grid-cols-2 gap-6"
               >
-                <div className="p-6 rounded-xl bg-foreground/5">
+                <div className="p-6 rounded-xl bg-secondary/40 border border-foreground/10">
                   <div className="text-3xl mb-3">😫</div>
                   <h3 className="font-semibold mb-2">Before SDD Adopters</h3>
-                  <ul className="space-y-2 text-sm text-foreground/60">
+                  <ul className="space-y-2 text-sm text-foreground/70">
                     <li>→ 3 weeks to first PR</li>
                     <li>→ Constant Slack interruptions</li>
                     <li>→ Unmotivated new hires</li>
@@ -253,10 +253,10 @@ export default function Home() {
                   </ul>
                 </div>
 
-                <div className="p-6 rounded-xl bg-foreground/10 border border-foreground/20">
+                <div className="p-6 rounded-xl bg-primary/5 border border-primary/20 shadow-sm">
                   <div className="text-3xl mb-3">🚀</div>
                   <h3 className="font-semibold mb-2">With SDD Adopters</h3>
-                  <ul className="space-y-2 text-sm text-foreground/80">
+                  <ul className="space-y-2 text-sm text-foreground">
                     <li>→ 3 days to first PR</li>
                     <li>→ Self-serve AI answers</li>
                     <li>→ Excited, engaged teams</li>
@@ -269,7 +269,7 @@ export default function Home() {
         </section>
 
         {/* Waitlist / Final CTA */}
-        <section id="waitlist" className="min-h-screen flex items-center justify-center px-4 py-20 bg-foreground/[0.02]">
+        <section id="waitlist" className="min-h-screen flex items-center justify-center px-4 py-20 bg-secondary/30">
           <motion.div
             initial="initial"
             whileInView="animate"
@@ -314,11 +314,11 @@ export default function Home() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="flex-1 h-14 px-5 rounded-xl bg-foreground/5 border border-foreground/10 text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary text-lg"
+                  className="flex-1 h-14 px-5 rounded-xl bg-background border border-foreground/20 text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary/50 text-lg transition-all duration-200"
                 />
                 <Button
                   type="submit"
-                  className="h-14 px-8 text-lg gap-2 group bg-foreground text-background hover:bg-foreground/90 rounded-xl"
+                  className="h-14 px-8 text-lg gap-2 group bg-foreground text-background hover:bg-foreground/90 rounded-xl transition-all duration-200"
                 >
                   Get Lifetime Free Access
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -334,18 +334,18 @@ export default function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="py-12 text-center border-t border-foreground/10">
-          <p className="text-sm text-foreground/40 mb-4">
+        <footer className="py-12 text-center border-t border-foreground/15">
+          <p className="text-sm text-foreground/50 mb-4">
             &copy; {new Date().getFullYear()} SDD Adopters. Building in public.
           </p>
-          <div className="flex items-center justify-center gap-6 text-sm text-foreground/50">
-            <a href="mailto:hello@sdd-adopters.com" className="hover:text-foreground transition">
+          <div className="flex items-center justify-center gap-6 text-sm text-foreground/60">
+            <a href="mailto:hello@sdd-adopters.com" className="hover:text-primary transition-colors duration-200">
               Contact
             </a>
-            <a href="#" className="hover:text-foreground transition">
+            <a href="#" className="hover:text-primary transition-colors duration-200">
               Twitter
             </a>
-            <a href="#" className="hover:text-foreground transition">
+            <a href="#" className="hover:text-primary transition-colors duration-200">
               LinkedIn
             </a>
           </div>
